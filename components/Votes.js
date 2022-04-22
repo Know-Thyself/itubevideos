@@ -3,26 +3,15 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt'
 import styles from '../styles/Home.module.css'
 
-const Votes = ({ video, videos, vote, rating, stateUpdater }) => {
+const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
 	const voteUpdater = (videoObj, totalVote) => {
 		let updatedVideo = { ...videoObj, rating: totalVote }
 		let newData = [...videos]
 		const i = newData.findIndex((video) => video.id === videoObj.id)
 		newData[i] = updatedVideo
-
-		const requestBody = updatedVideo
-		fetch('/api', {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json',
-				'Field-Name': 'Accept-Patch',
-			},
-			body: JSON.stringify(requestBody),
-		})
-			.then((res) => res.json())
-			.then((data) => console.log(data))
-			.catch((err) => console.log(err))
-
+		const videoId = requestBody.id
+		const updatedVote = requestBody.rating
+		updateVideo(videoId, updatedVote)
 		return stateUpdater(newData)
 	}
 

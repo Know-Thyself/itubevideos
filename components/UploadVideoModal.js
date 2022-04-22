@@ -3,7 +3,8 @@ import { Button } from '@material-ui/core'
 import Modal from 'react-bootstrap/Modal'
 import AddToQueueRoundedIcon from '@material-ui/icons/AddToQueueRounded'
 import TextField from '@material-ui/core/TextField'
-import Alert from '@material-ui/lab/Alert'
+// import Alert from '@material-ui/lab/Alert'
+import Alert from 'react-bootstrap/Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styles from '../styles/Home.module.css'
 
@@ -31,26 +32,31 @@ const UploadVideoModal = ({ addNewVideo }) => {
 		const match = url.match(regExp)
 		if (title === '' && showModal) {
 			setTitleErrorAlert(true)
+			const hideTitleErrorAlert = () => {
+				setTitleErrorAlert(false)
+			}
+			setTimeout(hideTitleErrorAlert, 5000)
 		} else if (url === '' && showModal) {
 			seEmptyUrlAlert(true)
 		} else if (!match) {
 			setInvalidUrlAlert(true)
 		} else if (title !== '' && url !== '' && match) {
 			addNewVideo(title, url)
-		}
-		const requestBody = { title: title, url: url }
-		fetch('/api', {
-			method: 'POST',
-			body: JSON.stringify(requestBody),
-			headers: { 'Content-Type': 'application/json' },
-		})
-			.then((response) => response.json())
-			.then((data) => console.log(data))
-		if (title !== '' && url !== '' && match) {
-			setTitle('')
-			setUrl('')
 			setShowModal(false)
 		}
+		// const requestBody = { title: title, url: url }
+		// fetch('/api', {
+		// 	method: 'POST',
+		// 	body: JSON.stringify(requestBody),
+		// 	headers: { 'Content-Type': 'application/json' },
+		// })
+		// 	.then((response) => response.json())
+		// 	.then((data) => console.log(data))
+		// if (title !== '' && url !== '' && match) {
+		// 	setTitle('')
+		// 	setUrl('')
+		// 	setShowModal(false)
+		// }
 	}
 
 	return (
@@ -77,10 +83,11 @@ const UploadVideoModal = ({ addNewVideo }) => {
 				<Modal.Body className='modal-fullscreen-lg-down modal-body'>
 					Please enter a title and a valid url of a YouTube video
 					<Alert
-						className={
-							titleErrorAlert ? styles['alert-failure'] : styles['d-none']
-						}
-						severity='error'
+					show={titleErrorAlert}
+						// className={
+						// 	titleErrorAlert ? 'alert-failure' : styles['d-none']
+						// }
+						variant='danger'
 						onClose={() => setTitleErrorAlert(false)}
 					>
 						Failure! — Title field should not be empty!

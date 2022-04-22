@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import UploadVideoModal from './UploadVideoModal'
-import Alert from '@material-ui/lab/Alert'
+// import Alert from '@material-ui/lab/Alert'
+import Alert from 'react-bootstrap/Alert'
 import Header from './Header'
 import SearchBar from './SearchBar'
 import Title from './Title'
@@ -14,13 +15,12 @@ import DeleteButton from './DeleteButton'
 import Footer from './Footer'
 import styles from '../styles/Home.module.css'
 
-const AllVideos = ({videosData}) => {
+const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 	const [videos, setVideos] = useState(videosData)
 	const [backupVideos, setBackupVideos] = useState(videosData)
-	const [successAlert, setSuccessAlert] = useState(true)
-	const [deleteAlert, setDeleteAlert] = useState(true)
-	const [loading, setLoading] = useState(true)
-  console.log(videos)
+	const [successAlert, setSuccessAlert] = useState(false)
+	const [deleteAlert, setDeleteAlert] = useState(false)
+	const [open, setOpen] = useState(false)
 
 	function youtubeIdParser(url) {
 		let regExp =
@@ -43,16 +43,15 @@ const AllVideos = ({videosData}) => {
 
 	const addNewVideo = (title, url) => {
 		let newArray = videos
-		newArray = [
-			{
-				id: Date.now(),
-				title: title,
-				url: url,
-				rating: 0,
-				posted: new Date().toString(),
-			},
-			...newArray,
-		]
+		let newVideo = {
+			id: Date.now().toString(),
+			title: title,
+			url: url,
+			rating: 0,
+			posted: new Date().toString(),
+		}
+		addVideo(newVideo)
+		newArray = [newVideo, ...newArray]
 		setSuccessAlert(true)
 		const hideSuccessAlert = () => {
 			setSuccessAlert(false)
@@ -62,6 +61,8 @@ const AllVideos = ({videosData}) => {
 	}
 
 	const videoRemover = (id) => {
+		console.log(id)
+		deleteVideo(id)
 		const remainingVideos = videos.filter((video) => video.id !== id)
 		setVideos(remainingVideos)
 		setDeleteAlert(true)
@@ -69,14 +70,8 @@ const AllVideos = ({videosData}) => {
 			setDeleteAlert(false)
 		}
 		setTimeout(hideDeleteAlert, 5000)
-		fetch(`/api/${id}`, {
-			method: 'DELETE',
-			headers: { 'Content-Type': 'application/json' },
-		})
-			.then((res) => res.json())
-			.then((data) => console.log(data))
-			.catch((err) => console.log(err))
 	}
+
 	const stateUpdater = (updatedState) => {
 		let newState = updatedState
 		return setVideos(newState)
@@ -92,8 +87,10 @@ const AllVideos = ({videosData}) => {
 				className={`${successAlert} ? ${styles['success-alert']} : ${styles['d-none']}`}
 			>
 				<Alert
-					severity='success'
-					className={`${successAlert} ? alert-success : ${styles['d-none']}`}
+					show={successAlert}
+					variant='success'
+					// severity='success'
+					// className={successAlert ? styles['success-alert'] : styles['d-none']}
 					onClose={() => setSuccessAlert(false)}
 				>
 					Success! — Your video is successfully uploaded!
@@ -145,7 +142,7 @@ const AllVideos = ({videosData}) => {
 					return (
 						<div key={index} className={styles['video-and-details-wrapper']}>
 							<Title title={video.title} />
-							<EmbeddedVideos id={video_id} loading={loading} />
+							<EmbeddedVideos id={video_id} />
 							<div className={styles['vote-and-delete']}>
 								<Votes
 									vote={video.rating}
@@ -153,6 +150,7 @@ const AllVideos = ({videosData}) => {
 									videos={videos}
 									rating={video.rating}
 									stateUpdater={stateUpdater}
+									updateVideo={updateVideo}
 								/>
 								<DeleteButton
 									id={video.id}

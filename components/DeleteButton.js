@@ -63,6 +63,7 @@ const DeleteButton = ({ id, videoRemover, title }) => {
 					<Button
 						id={id}
 						onClick={() => {
+							console.log(id)
 							videoRemover(id)
 							setOpen(false)
 						}}
