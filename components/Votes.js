@@ -9,8 +9,8 @@ const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
 		let newData = [...videos]
 		const i = newData.findIndex((video) => video.id === videoObj.id)
 		newData[i] = updatedVideo
-		const videoId = requestBody.id
-		const updatedVote = requestBody.rating
+		const videoId = updatedVideo.id
+		const updatedVote = updatedVideo.rating
 		updateVideo(videoId, updatedVote)
 		return stateUpdater(newData)
 	}
