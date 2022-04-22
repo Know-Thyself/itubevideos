@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../styles/Home.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 const SearchBar = ({ stateUpdater, videos }) => {
 	const [searchInput, setSearchInput] = useState('')
@@ -23,7 +25,10 @@ const SearchBar = ({ stateUpdater, videos }) => {
 				value={searchInput}
 				onChange={handleSearchInput}
 			/>
-			<i key='fasIcon' className={styles['fas fa-search']}></i>
+			<FontAwesomeIcon
+				icon={faMagnifyingGlass}
+				className={`${styles.fas} ${styles['fa-search']}`}
+			/>
 		</div>
 	)
 }

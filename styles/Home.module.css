@@ -74,13 +74,18 @@
   border: none;
   outline: none;
 }
+.fas {
+  color: #100e26;
+  font-size: 1rem;
+  height: 30px;
+}
 .fa-search {
   color: #100e26;
-  font-size: x-large;
+  font-size: large;
 }
 .search-bar::placeholder {
   color: #100e26;
-  font-size: x-large;
+  font-size: large;
 }
 .search-bar:-ms-input-placeholder {
   color: #100e26;
