@@ -61,7 +61,6 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 	}
 
 	const videoRemover = (id) => {
-		console.log(id)
 		deleteVideo(id)
 		const remainingVideos = videos.filter((video) => video.id !== id)
 		setVideos(remainingVideos)

@@ -19,7 +19,7 @@ const Home = ({ videos }) => {
 				body: JSON.stringify(data)
 			}
 		const response = await fetch(
-			'./api/create',
+			'/api/create',
 			requestOptions
 		)
 		if (!response.ok) {
@@ -30,7 +30,7 @@ const Home = ({ videos }) => {
 
 	const deleteVideo = async (id) => {
 		try {
-			await fetch(`./api/video/${id}`, {
+			await fetch(`/api/video/${id}`, {
 				method: 'DELETE',
 			})
 		} catch (error) {
@@ -40,9 +40,8 @@ const Home = ({ videos }) => {
 
 	const updateVideo = async (videoId, updatedVote) => {
 		const data = { rating: updatedVote }
-		console.log(data)
 		try {
-			await fetch(`./api/video/${videoId}`, {
+			await fetch(`/api/video/${videoId}`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json',

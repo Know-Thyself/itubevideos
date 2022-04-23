@@ -41,22 +41,11 @@ const UploadVideoModal = ({ addNewVideo }) => {
 		} else if (!match) {
 			setInvalidUrlAlert(true)
 		} else if (title !== '' && url !== '' && match) {
+			setTitle('')
+			setUrl('')
 			addNewVideo(title, url)
 			setShowModal(false)
 		}
-		// const requestBody = { title: title, url: url }
-		// fetch('/api', {
-		// 	method: 'POST',
-		// 	body: JSON.stringify(requestBody),
-		// 	headers: { 'Content-Type': 'application/json' },
-		// })
-		// 	.then((response) => response.json())
-		// 	.then((data) => console.log(data))
-		// if (title !== '' && url !== '' && match) {
-		// 	setTitle('')
-		// 	setUrl('')
-		// 	setShowModal(false)
-		// }
 	}
 
 	return (
