@@ -10,13 +10,12 @@ export default async (req, res) => {
 		optionsSuccessStatus: 200,
 	}
 	await NextCors(req, res, options)
-
 	if (req.method !== 'POST') {
 		return res.status(405).json({ message: 'Method not allowed!' })
 	}
 	const videoData = req.body
 	const newVideo = await prisma.videos.create({
-		data: videoData,
+		data: videoData
 	})
 
 	res.json(newVideo)

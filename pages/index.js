@@ -18,7 +18,10 @@ const Home = ({ videos }) => {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(data)
 			}
-		const response = await fetch('/api/create', requestOptions)
+		const response = await fetch(
+			'https://itubevideos.vercel.app/api/create',
+			requestOptions
+		)
 		if (!response.ok) {
 			throw new Error(response.statusText)
 		}
