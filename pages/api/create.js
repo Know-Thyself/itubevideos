@@ -1,6 +1,7 @@
 //import { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+//import { PrismaClient } from '@prisma/client'
+//const prisma = new PrismaClient()
+import prisma from '../../lib/prisma.ts'
 import NextCors from 'nextjs-cors'
 
 export default async (req, res) => {
