@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import UploadVideoModal from './UploadVideoModal'
-// import Alert from '@material-ui/lab/Alert'
 import Alert from 'react-bootstrap/Alert'
 import Header from './Header'
 import SearchBar from './SearchBar'
@@ -99,8 +98,6 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 					show={successAlert}
 					variant='success'
 					dismissible
-					// severity='success'
-					// className={successAlert ? styles['success-alert'] : styles['d-none']}
 					onClose={() => setSuccessAlert(false)}
 				>
 					Success! — Your video is successfully uploaded!
@@ -113,8 +110,6 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 					show={errorAlert}
 					variant='danger'
 					dismissible
-					// severity='success'
-					// className={errorAlert ? styles['success-alert'] : styles['d-none']}
 					onClose={() => setErrorAlert(false)}
 				>
 					Error! — The video already exists! Try uploading another video.

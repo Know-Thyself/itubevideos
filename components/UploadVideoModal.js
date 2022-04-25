@@ -3,7 +3,6 @@ import { Button } from '@material-ui/core'
 import Modal from 'react-bootstrap/Modal'
 import AddToQueueRoundedIcon from '@material-ui/icons/AddToQueueRounded'
 import TextField from '@material-ui/core/TextField'
-// import Alert from '@material-ui/lab/Alert'
 import Alert from 'react-bootstrap/Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styles from '../styles/Home.module.css'
@@ -38,8 +37,14 @@ const UploadVideoModal = ({ addNewVideo }) => {
 			setTimeout(hideTitleErrorAlert, 5000)
 		} else if (url === '' && showModal) {
 			seEmptyUrlAlert(true)
+			setTimeout(() => {
+				seEmptyUrlAlert(false)
+			}, 5000);
 		} else if (!match) {
 			setInvalidUrlAlert(true)
+			setTimeout(() => {
+				setInvalidUrlAlert(false)
+			}, 5000);
 		} else if (title !== '' && url !== '' && match) {
 			setTitle('')
 			setUrl('')
@@ -72,10 +77,8 @@ const UploadVideoModal = ({ addNewVideo }) => {
 				<Modal.Body className='modal-fullscreen-lg-down modal-body'>
 					Please enter a title and a valid url of a YouTube video
 					<Alert
-					show={titleErrorAlert}
-						// className={
-						// 	titleErrorAlert ? 'alert-failure' : styles['d-none']
-						// }
+						show={titleErrorAlert}
+						dismissible
 						variant='danger'
 						onClose={() => setTitleErrorAlert(false)}
 					>
@@ -97,15 +100,17 @@ const UploadVideoModal = ({ addNewVideo }) => {
 						value={title}
 					/>
 					<Alert
-						className={emptyUrlAlert ? styles.alert : styles['d-none']}
-						severity='error'
+						show={emptyUrlAlert}
+						variant='danger'
+						dismissible
 						onClose={() => seEmptyUrlAlert(false)}
 					>
-						Failure! — A URL field can not be empty!
+						Failure! — URL field can not be empty!
 					</Alert>
 					<Alert
-						className={invalidUrlAlert ? styles.alert : styles['d-none']}
-						severity='error'
+						show={invalidUrlAlert}
+						variant='danger'
+						dismissible
 						onClose={() => setInvalidUrlAlert(false)}
 					>
 						Failure! — Invalid URL!
