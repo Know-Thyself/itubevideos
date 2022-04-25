@@ -133,7 +133,8 @@
   text-align: center;
   margin: auto;
 }
-.success-alert {
+.success-alert,
+.error-alert {
   display: block;
   width: 40%;
   margin: auto;

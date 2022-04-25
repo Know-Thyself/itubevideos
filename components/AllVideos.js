@@ -19,6 +19,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 	const [videos, setVideos] = useState(videosData)
 	const [backupVideos, setBackupVideos] = useState(videosData)
 	const [successAlert, setSuccessAlert] = useState(false)
+	const [errorAlert, setErrorAlert] = useState(false)
 	const [deleteAlert, setDeleteAlert] = useState(false)
 	const [open, setOpen] = useState(false)
 
@@ -42,22 +43,31 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 	}
 
 	const addNewVideo = (title, url) => {
-		let newArray = videos
-		let newVideo = {
-			id: Date.now().toString(),
-			title: title,
-			url: url,
-			rating: 0,
-			posted: new Date().toString(),
+		const ids = videos.map((video) => video.id)
+		if (ids.includes(youtubeIdParser(url).toString())) {
+			setErrorAlert(true)
+			setTimeout(() => {
+				setErrorAlert(false)
+			}, 5000);
+		} else {
+			let newArray = videos
+			let newVideo = {
+				id: youtubeIdParser(url).toString(),
+				title: title,
+				url: url,
+				rating: 0,
+				posted: new Date().toString(),
+			}
+			addVideo(newVideo)
+			newArray = [newVideo, ...newArray]
+			setVideos(newArray)
+			setSuccessAlert(true)
+			const hideSuccessAlert = () => {
+				setSuccessAlert(false)
+			}
+			setTimeout(hideSuccessAlert, 5000)
+			return setVideos(newArray)
 		}
-		addVideo(newVideo)
-		newArray = [newVideo, ...newArray]
-		setSuccessAlert(true)
-		const hideSuccessAlert = () => {
-			setSuccessAlert(false)
-		}
-		setTimeout(hideSuccessAlert, 5000)
-		return setVideos(newArray)
 	}
 
 	const videoRemover = (id) => {
@@ -88,11 +98,26 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 				<Alert
 					show={successAlert}
 					variant='success'
+					dismissible
 					// severity='success'
 					// className={successAlert ? styles['success-alert'] : styles['d-none']}
 					onClose={() => setSuccessAlert(false)}
 				>
 					Success! — Your video is successfully uploaded!
+				</Alert>
+			</div>
+			<div
+				className={`${errorAlert} ? ${styles['error-alert']} : ${styles['d-none']}`}
+			>
+				<Alert
+					show={errorAlert}
+					variant='danger'
+					dismissible
+					// severity='success'
+					// className={errorAlert ? styles['success-alert'] : styles['d-none']}
+					onClose={() => setErrorAlert(false)}
+				>
+					Error! — The video already exists! Try uploading another video.
 				</Alert>
 			</div>
 			<div

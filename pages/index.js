@@ -13,6 +13,7 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ videos }) => {
+	const ids = videos.map(video => video.id)
 	async function addVideo(data) {
 		  const requestOptions = {
 				method: 'POST',
@@ -23,6 +24,9 @@ const Home = ({ videos }) => {
 			'/api/create',
 			requestOptions
 		)
+		if (ids.includes(data.id)) {
+			throw new Error(`Video by the ID ${data.id} already exists!`);
+		}
 		if (!response.ok) {
 			throw new Error(response.statusText)
 		}
