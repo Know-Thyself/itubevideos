@@ -13,21 +13,14 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ videos }) => {
-	const ids = videos.map(video => video.id)
 	async function addVideo(data) {
-		  const requestOptions = {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(data)
-			}
-		const response = await fetch(
-			'/api/create',
-			requestOptions
-		)
-		if (ids.includes(data.id)) {
-			throw new Error(`Video by the ID ${data.id} already exists!`);
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(data),
 		}
-		else if (!response.ok) {
+		const response = await fetch('/api/create', requestOptions)
+		if (!response.ok) {
 			throw new Error(response.statusText)
 		}
 		return await response.json()
