@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 //import { PrismaClient } from '@prisma/client'
 import AllVideos from '../components/AllVideos'
 //const prisma = new PrismaClient()
-import prisma from '../lib/prisma.ts'
+import prisma from '../lib/prisma'
 
 export async function getServerSideProps() {
 	const videos = await prisma.videos.findMany()
@@ -21,7 +21,7 @@ const Home = ({ videos }) => {
 		}
 		const response = await fetch('/api/create', requestOptions)
 		if (!response.ok) {
-			throw new Error(response.statusText)
+			throw new Error('Something went wrong.')
 		}
 		return await response.json()
 	}
