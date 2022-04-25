@@ -27,7 +27,7 @@ const Home = ({ videos }) => {
 		if (ids.includes(data.id)) {
 			throw new Error(`Video by the ID ${data.id} already exists!`);
 		}
-		if (!response.ok) {
+		else if (!response.ok) {
 			throw new Error(response.statusText)
 		}
 		return await response.json()
