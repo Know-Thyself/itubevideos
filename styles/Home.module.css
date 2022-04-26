@@ -231,6 +231,12 @@
 .dialog-content {
   background-color: rgb(193, 201, 211);
 }
+.select {
+  width: 100%;
+}
+.checkbox-wrapper {
+  margin-top: 0.5rem;
+}
 .footer {
   display: flex;
   justify-content: center;

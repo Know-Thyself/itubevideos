@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { Button } from '@material-ui/core'
 import Modal from 'react-bootstrap/Modal'
 import AddToQueueRoundedIcon from '@material-ui/icons/AddToQueueRounded'
-import TextField from '@material-ui/core/TextField'
+//import TextField from '@material-ui/core/TextField'
+import TextField from '@mui/material/TextField'
 import Alert from 'react-bootstrap/Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styles from '../styles/Home.module.css'
+import SelectCheckmarks from './SelectCheckmarks'
 
 const UploadVideoModal = ({ addNewVideo }) => {
 	const [showModal, setShowModal] = useState(false)
@@ -39,12 +41,12 @@ const UploadVideoModal = ({ addNewVideo }) => {
 			seEmptyUrlAlert(true)
 			setTimeout(() => {
 				seEmptyUrlAlert(false)
-			}, 5000);
+			}, 5000)
 		} else if (!match) {
 			setInvalidUrlAlert(true)
 			setTimeout(() => {
 				setInvalidUrlAlert(false)
-			}, 5000);
+			}, 5000)
 		} else if (title !== '' && url !== '' && match) {
 			setTitle('')
 			setUrl('')
@@ -74,7 +76,7 @@ const UploadVideoModal = ({ addNewVideo }) => {
 				<Modal.Header closeButton>
 					<Modal.Title>Video Uploader Modal</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className='modal-fullscreen-lg-down modal-body'>
+				<Modal.Body className={styles['modal-fullscreen-lg-down modal-body']}>
 					Please enter a title and a valid url of a YouTube video
 					<Alert
 						show={titleErrorAlert}
@@ -88,7 +90,9 @@ const UploadVideoModal = ({ addNewVideo }) => {
 						className={styles['modal-content modal-text']}
 						autoFocus
 						margin='dense'
+						required
 						id='title'
+						variant='outlined'
 						label='Title'
 						type='text'
 						style={{ color: 'red' }}
@@ -117,6 +121,8 @@ const UploadVideoModal = ({ addNewVideo }) => {
 					</Alert>
 					<TextField
 						className={styles['modal-content modal-text']}
+						required
+						variant='outlined'
 						margin='dense'
 						id='url'
 						label='URL'
@@ -128,6 +134,7 @@ const UploadVideoModal = ({ addNewVideo }) => {
 						}}
 						value={url}
 					/>
+					<SelectCheckmarks />
 				</Modal.Body>
 				<Modal.Footer>
 					<div className={styles['upload-and-cancel-buttons']}>
