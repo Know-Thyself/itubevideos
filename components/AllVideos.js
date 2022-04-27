@@ -41,7 +41,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 		setVideos(sortedArray)
 	}
 
-	const addNewVideo = (title, url) => {
+	const addNewVideo = (title, url, likes) => {
 		const ids = videos.map((video) => video.id)
 		if (ids.includes(youtubeIdParser(url).toString())) {
 			setErrorAlert(true)
@@ -54,7 +54,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 				id: youtubeIdParser(url).toString(),
 				title: title,
 				url: url,
-				rating: 0,
+				rating: parseInt(likes),
 				posted: new Date().toString(),
 			}
 			addVideo(newVideo)

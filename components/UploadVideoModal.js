@@ -13,6 +13,7 @@ const UploadVideoModal = ({ addNewVideo }) => {
 	const [showModal, setShowModal] = useState(false)
 	const [title, setTitle] = useState('')
 	const [url, setUrl] = useState('')
+	const [votes, setVotes] = useState(0)
 	const [titleErrorAlert, setTitleErrorAlert] = useState(false)
 	const [emptyUrlAlert, seEmptyUrlAlert] = useState(false)
 	const [invalidUrlAlert, setInvalidUrlAlert] = useState(false)
@@ -50,7 +51,8 @@ const UploadVideoModal = ({ addNewVideo }) => {
 		} else if (title !== '' && url !== '' && match) {
 			setTitle('')
 			setUrl('')
-			addNewVideo(title, url)
+			setVotes(0)
+			addNewVideo(title, url, votes)
 			setShowModal(false)
 		}
 	}
@@ -134,7 +136,20 @@ const UploadVideoModal = ({ addNewVideo }) => {
 						}}
 						value={url}
 					/>
-					<SelectCheckmarks />
+					<TextField
+						className={styles['modal-content modal-text']}
+						variant='outlined'
+						margin='dense'
+						id='votes'
+						label='Number of likes'
+						type='number'
+						fullWidth
+						onChange={(e) => {
+							setVotes(e.target.value)
+						}}
+						value={votes}
+					/>
+					{/* <SelectCheckmarks /> */}
 				</Modal.Body>
 				<Modal.Footer>
 					<div className={styles['upload-and-cancel-buttons']}>

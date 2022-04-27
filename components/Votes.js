@@ -15,6 +15,12 @@ const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
 		return stateUpdater(newData)
 	}
 
+	function kFormatter(num) {
+		return Math.abs(num) > 999
+			? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + 'K'
+			: Math.sign(num) * Math.abs(num)
+	}
+
 	return (
 		<div className={styles['votes-container']}>
 			<ThumbUpAltIcon
@@ -23,7 +29,7 @@ const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
 				fontSize='large'
 				variant='contained'
 			/>
-			<h3 className={styles.votes}>Votes: {vote}</h3>
+			<h3 className={styles.votes}>Votes: {kFormatter(vote)}</h3>
 			<ThumbDownAltIcon
 				onClick={() => voteUpdater(video, rating - 1)}
 				className={styles.dislike}
