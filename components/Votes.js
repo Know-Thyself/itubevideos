@@ -1,19 +1,19 @@
-import React from 'react'
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
-import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+import styles from "../styles/Home.module.css";
 
 const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
 	const voteUpdater = (videoObj, totalVote) => {
-		let updatedVideo = { ...videoObj, rating: totalVote }
-		let newData = [...videos]
-		const i = newData.findIndex((video) => video.id === videoObj.id)
-		newData[i] = updatedVideo
-		const videoId = updatedVideo.id
-		const updatedVote = updatedVideo.rating
-		updateVideo(videoId, updatedVote)
-		return stateUpdater(newData)
-	}
+		let updatedVideo = { ...videoObj, rating: totalVote };
+		let newData = [...videos];
+		const i = newData.findIndex((video) => video.id === videoObj.id);
+		newData[i] = updatedVideo;
+		const videoId = updatedVideo.id;
+		const updatedVote = updatedVideo.rating;
+		updateVideo(videoId, updatedVote);
+		return stateUpdater(newData);
+	};
 
 	function kFormatter(num) {
 		return Math.abs(num) > 999
@@ -22,7 +22,7 @@ const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
 	}
 
 	return (
-		<div className={styles['votes-container']}>
+		<div className={styles["votes-container"]}>
 			<ThumbUpAltIcon
 				onClick={() => voteUpdater(video, rating + 1)}
 				className={styles.like}
@@ -37,7 +37,7 @@ const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
 				variant='contained'
 			/>
 		</div>
-	)
-}
+	);
+};
 
-export default Votes
+export default Votes;

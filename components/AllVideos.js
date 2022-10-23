@@ -21,6 +21,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 	const [errorAlert, setErrorAlert] = useState(false)
 	const [deleteAlert, setDeleteAlert] = useState(false)
 	const [open, setOpen] = useState(false)
+	const [onlyChild, setOnlyChild] = useState(false);
 
 	function youtubeIdParser(url) {
 		let regExp =
@@ -87,12 +88,16 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 
 	return (
 		<div key='mainWrapper'>
-			<div className={styles['App-header']}>
+			<div className={styles["App-header"]}>
 				<Header />
-				<SearchBar stateUpdater={stateUpdater} videos={backupVideos} />
+				<SearchBar
+					stateUpdater={stateUpdater}
+					videos={backupVideos}
+					setOnlyChild={setOnlyChild}
+				/>
 			</div>
 			<div
-				className={`${successAlert} ? ${styles['success-alert']} : ${styles['d-none']}`}
+				className={`${successAlert} ? ${styles["success-alert"]} : ${styles["d-none"]}`}
 			>
 				<Alert
 					show={successAlert}
@@ -104,7 +109,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 				</Alert>
 			</div>
 			<div
-				className={`${errorAlert} ? ${styles['error-alert']} : ${styles['d-none']}`}
+				className={`${errorAlert} ? ${styles["error-alert"]} : ${styles["d-none"]}`}
 			>
 				<Alert
 					show={errorAlert}
@@ -116,22 +121,22 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 				</Alert>
 			</div>
 			<div
-				className={`${deleteAlert} ? ${styles['success-alert']} : ${styles['d-none']}`}
+				className={`${deleteAlert} ? ${styles["success-alert"]} : ${styles["d-none"]}`}
 			>
 				<Alert
 					severity='success'
-					className={`${deleteAlert} ? alert-success : ${styles['d-none']}`}
+					className={`${deleteAlert} ? alert-success : ${styles["d-none"]}`}
 					onClose={() => setDeleteAlert(false)}
 				>
 					Success! — Your video is successfully deleted!
 				</Alert>
 			</div>
-			<div className={styles['main-buttons-outer-container']}>
-				<div className={styles['main-buttons']}>
-					<div className={styles['asc-desc-order']}>
-						<p className='order-by'>Order By Votes:&nbsp;</p>
+			<div className={styles["main-buttons-outer-container"]}>
+				<div className={styles["main-buttons"]}>
+					<div className={styles["asc-desc-order"]}>
+						<p className={styles["sort-by"]}>Sort By Votes:&nbsp;</p>
 						<Button
-							className=''
+							className={styles['asc-btn']}
 							onClick={ascendingOrder}
 							variant='contained'
 							color='primary'
@@ -140,7 +145,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 							<ArrowUpwardIcon />
 						</Button>
 						<Button
-							className=''
+							className={styles['desc-btn']}
 							onClick={descendingOrder}
 							variant='contained'
 							color='primary'
@@ -150,19 +155,22 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 						</Button>
 					</div>
 					<UploadVideoModal
-						className={styles['upload-button']}
+						className={styles["upload-button"]}
 						addNewVideo={addNewVideo}
 					/>
 				</div>
 			</div>
-			<div key='displayWrapper' className={styles['main-container']}>
+			<div
+				key='displayWrapper'
+				className={onlyChild ? styles["only-child"] : styles["main-container"]}
+			>
 				{videos.map((video, index) => {
-					const video_id = youtubeIdParser(video.url)
+					const video_id = youtubeIdParser(video.url);
 					return (
-						<div key={index} className={styles['video-and-details-wrapper']}>
+						<div key={index} className={styles["video-and-details-wrapper"]}>
 							<Title title={video.title} />
 							<EmbeddedVideos id={video_id} />
-							<div className={styles['vote-and-delete']}>
+							<div className={styles["vote-and-delete"]}>
 								<Votes
 									vote={video.rating}
 									video={video}
@@ -178,12 +186,12 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 								/>
 							</div>
 						</div>
-					)
+					);
 				})}
 			</div>
 			<Footer />
 		</div>
-	)
+	);
 }
 
 export default AllVideos
