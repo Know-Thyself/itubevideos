@@ -6,7 +6,8 @@ import AllVideos from '../components/AllVideos'
 import prisma from '../lib/prisma'
 
 export async function getServerSideProps() {
-	const videos = await prisma.videos.findMany()
+	const videos = await prisma.youtube_videos.findMany()
+	console.log(videos)
 	return { props: { videos } }
 }
 

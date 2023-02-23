@@ -7,11 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model videos {
-  id     String     @default(cuid()) @id
-  title  String? @db.VarChar(255)
-  url    String? @db.VarChar(255)
+model youtube_videos {
+  id     String    @default(cuid()) @id
+  title  String @db.VarChar(255)
+  url    String @db.VarChar(255)
   rating Int?
   posted String? @db.VarChar(255)
-
 }

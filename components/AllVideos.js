@@ -15,6 +15,7 @@ import Footer from './Footer'
 import styles from '../styles/Home.module.css'
 
 const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
+	console.log(videosData)
 	const [videos, setVideos] = useState(videosData)
 	const [backupVideos, setBackupVideos] = useState(videosData)
 	const [successAlert, setSuccessAlert] = useState(false)
