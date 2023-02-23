@@ -1,6 +1,12 @@
 import React from "react";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+// import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+// import ThumbUpAltIcon from '@mui/material/ThumbUpAltIcon'
+import { ThumbUpAltIcon } from '@mui/material'
+import { ThumbDownAltIcon } from '@mui/material'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+
+// import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import styles from "../styles/Home.module.css";
 
 const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
@@ -22,22 +28,24 @@ const Votes = ({ video, videos, vote, rating, stateUpdater, updateVideo }) => {
 	}
 
 	return (
-		<div className={styles["votes-container"]}>
-			<ThumbUpAltIcon
+		<div className={styles['votes-container']}>
+			{/* <ThumbUpAltIcon
 				onClick={() => voteUpdater(video, rating + 1)}
 				className={styles.like}
 				fontSize='large'
 				variant='contained'
-			/>
+			/> */}
+			<FontAwesomeIcon icon={faThumbsUp} />
 			<h3 className={styles.votes}>Votes: {kFormatter(vote)}</h3>
-			<ThumbDownAltIcon
+			{/* <ThumbDownAltIcon
 				onClick={() => voteUpdater(video, rating - 1)}
 				className={styles.dislike}
 				fontSize='large'
 				variant='contained'
-			/>
+			/> */}
+			<FontAwesomeIcon icon={faThumbsDown} />
 		</div>
-	);
+	)
 };
 
 export default Votes;

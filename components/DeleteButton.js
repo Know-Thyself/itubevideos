@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import DeleteIcon from '@material-ui/icons/Delete'
+// import Button from '@material-ui/core/Button'
+import Button from '@mui/material/Button'
+// import Dialog from '@material-ui/core/Dialog'
+import Dialog from '@mui/material/Dialog'
+// import DialogActions from '@material-ui/core/DialogActions'
+import DialogActions from '@mui/material/DialogActions'
+// import DialogContent from '@material-ui/core/DialogContent'
+import DialogContent from '@mui/material/DialogContent'
+// import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogContentText from '@mui/material/DialogContentText'
+// import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogTitle from '@mui/material/DialogTitle'
+// import DeleteIcon from '@material-ui/icons/Delete'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faCopyright } from '@fortawesome/free-solid-svg-icons'
 import styles from '../styles/Home.module.css'
 
 const DeleteButton = ({ id, videoRemover, title }) => {
@@ -22,15 +31,15 @@ const DeleteButton = ({ id, videoRemover, title }) => {
 	return (
 		<div className={styles['delete-button-container']}>
 			<div>
-				<Button
-					variant='contained'
-					color='secondary'
+				<button
+					// variant='contained'
+					// color='secondary'
 					className={styles['delete-button']}
-					startIcon={<DeleteIcon />}
+					// startIcon={<DeleteIcon />}
 					onClick={openDialogBox}
 				>
-					Delete
-				</Button>
+					Delete <FontAwesomeIcon icon={faTrash} />
+				</button>
 			</div>
 			<Dialog
 				open={open}
@@ -68,8 +77,9 @@ const DeleteButton = ({ id, videoRemover, title }) => {
 						}}
 						variant='outlined'
 						color='secondary'
-						startIcon={<DeleteIcon />}
+						// startIcon={<DeleteIcon />}
 					>
+						<svg data-testid='DeleteIcon'></svg>
 						Delete
 					</Button>
 				</DialogActions>

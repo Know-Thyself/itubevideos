@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Button from '@material-ui/core/Button'
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+// import Button from '@material-ui/core/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons'
+// import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import UploadVideoModal from './UploadVideoModal'
 import Alert from 'react-bootstrap/Alert'
 import Header from './Header'
@@ -89,7 +91,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 
 	return (
 		<div key='mainWrapper'>
-			<div className={styles["App-header"]}>
+			<div className={styles['App-header']}>
 				<Header />
 				<SearchBar
 					stateUpdater={stateUpdater}
@@ -98,7 +100,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 				/>
 			</div>
 			<div
-				className={`${successAlert} ? ${styles["success-alert"]} : ${styles["d-none"]}`}
+				className={`${successAlert} ? ${styles['success-alert']} : ${styles['d-none']}`}
 			>
 				<Alert
 					show={successAlert}
@@ -110,7 +112,7 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 				</Alert>
 			</div>
 			<div
-				className={`${errorAlert} ? ${styles["error-alert"]} : ${styles["d-none"]}`}
+				className={`${errorAlert} ? ${styles['error-alert']} : ${styles['d-none']}`}
 			>
 				<Alert
 					show={errorAlert}
@@ -122,56 +124,58 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 				</Alert>
 			</div>
 			<div
-				className={`${deleteAlert} ? ${styles["success-alert"]} : ${styles["d-none"]}`}
+				className={`${deleteAlert} ? ${styles['success-alert']} : ${styles['d-none']}`}
 			>
 				<Alert
 					severity='success'
-					className={`${deleteAlert} ? alert-success : ${styles["d-none"]}`}
+					className={`${deleteAlert} ? alert-success : ${styles['d-none']}`}
 					onClose={() => setDeleteAlert(false)}
 				>
 					Success! — Your video is successfully deleted!
 				</Alert>
 			</div>
-			<div className={styles["main-buttons-outer-container"]}>
-				<div className={styles["main-buttons"]}>
-					<div className={styles["asc-desc-order"]}>
-						<p className={styles["sort-by"]}>Sort By Votes:&nbsp;</p>
-						<Button
+			<div className={styles['main-buttons-outer-container']}>
+				<div className={styles['main-buttons']}>
+					<div className={styles['asc-desc-order']}>
+						<p className={styles['sort-by']}>Sort By Votes:&nbsp;</p>
+						<button
 							className={styles['asc-btn']}
 							onClick={ascendingOrder}
 							variant='contained'
 							color='primary'
 						>
 							Asc &nbsp;
-							<ArrowUpwardIcon />
-						</Button>
-						<Button
+							{/* <ArrowUpwardIcon /> */}
+							<FontAwesomeIcon icon={faArrowUp} />
+						</button>
+						<button
 							className={styles['desc-btn']}
 							onClick={descendingOrder}
 							variant='contained'
 							color='primary'
 						>
 							Desc &nbsp;
-							<ArrowDownwardIcon />
-						</Button>
+							{/* <ArrowDownwardIcon /> */}
+							<FontAwesomeIcon icon={faArrowDown} />
+						</button>
 					</div>
 					<UploadVideoModal
-						className={styles["upload-button"]}
+						className={styles['upload-button']}
 						addNewVideo={addNewVideo}
 					/>
 				</div>
 			</div>
 			<div
 				key='displayWrapper'
-				className={onlyChild ? styles["only-child"] : styles["main-container"]}
+				className={onlyChild ? styles['only-child'] : styles['main-container']}
 			>
 				{videos.map((video, index) => {
-					const video_id = youtubeIdParser(video.url);
+					const video_id = youtubeIdParser(video.url)
 					return (
-						<div key={index} className={styles["video-and-details-wrapper"]}>
+						<div key={index} className={styles['video-and-details-wrapper']}>
 							<Title title={video.title} />
 							<EmbeddedVideos id={video_id} />
-							<div className={styles["vote-and-delete"]}>
+							<div className={styles['vote-and-delete']}>
 								<Votes
 									vote={video.rating}
 									video={video}
@@ -187,12 +191,12 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 								/>
 							</div>
 						</div>
-					);
+					)
 				})}
 			</div>
 			<Footer />
 		</div>
-	);
+	)
 }
 
 export default AllVideos

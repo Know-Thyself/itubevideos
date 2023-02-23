@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Button } from '@material-ui/core'
+// import { Button } from '@material-ui/core'
 import Modal from 'react-bootstrap/Modal'
-import AddToQueueRoundedIcon from '@material-ui/icons/AddToQueueRounded'
+// import AddToQueueRoundedIcon from '@material-ui/icons/AddToQueueRounded'
 //import TextField from '@material-ui/core/TextField'
+// import TextField from '@mui/material/TextField'
 import TextField from '@mui/material/TextField'
 import Alert from 'react-bootstrap/Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -59,15 +60,15 @@ const UploadVideoModal = ({ addNewVideo }) => {
 
 	return (
 		<>
-			<Button
+			<button
 				className={styles['add-button']}
-				variant='contained'
-				color='primary'
+				// variant='contained'
+				// color='primary'
 				onClick={handleShow}
 			>
 				Add Video &nbsp;
-				<AddToQueueRoundedIcon />
-			</Button>
+				{/* <AddToQueueRoundedIcon /> */}
+			</button>
 			<Modal
 				className={styles.modal}
 				show={showModal}
@@ -153,7 +154,7 @@ const UploadVideoModal = ({ addNewVideo }) => {
 				</Modal.Body>
 				<Modal.Footer>
 					<div className={styles['upload-and-cancel-buttons']}>
-						<Button
+						<button
 							type='cancel'
 							className={styles['cancel-button']}
 							variant='contained'
@@ -161,8 +162,8 @@ const UploadVideoModal = ({ addNewVideo }) => {
 							onClick={cancelButtonHandler}
 						>
 							Cancel
-						</Button>
-						<Button
+						</button>
+						<button
 							onClick={submitNewVideo}
 							type='submit'
 							className={styles['submit-btn']}
@@ -170,7 +171,7 @@ const UploadVideoModal = ({ addNewVideo }) => {
 							color='primary'
 						>
 							Upload
-						</Button>
+						</button>
 					</div>
 				</Modal.Footer>
 			</Modal>
