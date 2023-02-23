@@ -12,7 +12,7 @@ const create = async (req, res) => {
 		return res.status(405).json({ message: 'Method not allowed!' })
 	}
 	const videoData = req.body
-	const newVideo = await prisma.videos.create({
+	const newVideo = await prisma.youtube_videos.create({
 		data: videoData
 	})
 
