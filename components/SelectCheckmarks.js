@@ -41,7 +41,6 @@ export default function SelectCheckmarks() {
 			typeof value === 'string' ? value.split(',') : value
 		)
 	}
-	console.log(videoCategory)
 
 	return (
 		<div className={styles['checkbox-wrapper']}>

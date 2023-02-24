@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 const SearchBar = ({ stateUpdater, videos, setOnlyChild }) => {
-	console.log(styles["main-container"]);
 	const [searchInput, setSearchInput] = useState("");
 
 	const handleSearchInput = (e) => {
