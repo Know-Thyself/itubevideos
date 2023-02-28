@@ -140,8 +140,8 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 						<button
 							className={styles['asc-btn']}
 							onClick={ascendingOrder}
-							variant='contained'
-							color='primary'
+							// variant='contained'
+							// color='primary'
 						>
 							Asc &nbsp;
 							{/* <ArrowUpwardIcon /> */}
@@ -150,8 +150,8 @@ const AllVideos = ({ videosData, addVideo, deleteVideo, updateVideo }) => {
 						<button
 							className={styles['desc-btn']}
 							onClick={descendingOrder}
-							variant='contained'
-							color='primary'
+							// variant='contained'
+							// color='primary'
 						>
 							Desc &nbsp;
 							{/* <ArrowDownwardIcon /> */}

@@ -60,9 +60,7 @@ const DeleteButton = ({ id, videoRemover, title }) => {
 					>
 						The video: &apos;{title}&apos; will be permanently removed from our
 						database. <br />
-						Of course, you can add it later if you change your mind. However,
-						the video will lose all of it&apos;s votes it has had so far as
-						votes for newly added videos starts from 0.
+						Of course, you can add it later if you change your mind.
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions className={styles['alert-primary dialog-content']}>

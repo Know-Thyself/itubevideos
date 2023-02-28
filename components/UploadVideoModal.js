@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField'
 import Alert from 'react-bootstrap/Alert'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styles from '../styles/Home.module.css'
-import SelectCheckmarks from './SelectCheckmarks'
+//import SelectCheckmarks from './SelectCheckmarks'
 
 const UploadVideoModal = ({ addNewVideo }) => {
 	const [showModal, setShowModal] = useState(false)

@@ -10,7 +10,7 @@ import React from 'react'
 // import InstagramIcon from '@material-ui/icons/Instagram'
 // import PinterestIcon from '@material-ui/icons/Pinterest'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faCopyright } from '@fortawesome/free-solid-svg-icons'
+import { faCopyright } from '@fortawesome/free-solid-svg-icons'
 import styles from '../styles/Home.module.css'
 
 const Footer = () => {
@@ -18,8 +18,8 @@ const Footer = () => {
 		<div className={styles.footer}>
 			<div className={styles['footer-inner-div']}>
 				<p>
-					<FontAwesomeIcon icon={faCopyright} className={styles.copyright} />{' '}
-					Biruk Kebede 2023
+					<FontAwesomeIcon icon={faCopyright} className={styles.copyright} />
+					<span>Biruk Kebede 2023</span>
 				</p>
 				{/* <CopyrightIcon />
 				<MailOutlineIcon />
